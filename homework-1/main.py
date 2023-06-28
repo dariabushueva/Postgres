@@ -15,8 +15,8 @@ sql_insert_od = 'INSERT INTO orders_data VALUES(%s, %s, %s, %s, %s)'
 conn = psycopg2.connect(
         host='localhost',
         database='north',
-        user='postgres',
-        password='46pgBuchDD'
+        user=os.getenv('PGSQL_USER'),
+        password=os.getenv('PGSQL_PASSWORD')
     )
 
 try:
@@ -39,3 +39,4 @@ try:
                 cur.executemany(sql_insert_od, contents)
 finally:
     conn.close()
+
